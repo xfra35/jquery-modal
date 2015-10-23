@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+  <script src="jquery.modal.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
+
+  <title>jQuery Modal</title>
+
+  <style>
+  #modal-1,#modal-2{
+    display:none;
+  }
+  </style>
+
+  <script>
+    $(document).ready(function(){
+      $(document).on('click','.modal-btn',function(event){
+        event.preventDefault();
+        $(this).modal({
+          unique: false
+        });
+      });
+      $('#modal-2').on($.modal.OPEN,function(){
+        $('[name="name"]',this).one('click.my change.my',function(event){
+          event.stopPropagation();
+          $.modal.close();
+        });
+      }).on($.modal.BEFORE_CLOSE,function(){
+        $('#choice').html('Your choice: ' + $('[name="name"]:checked',this).val());
+        $('[name="name"]',this).off('.my');
+      });
+    });
+  </script>
+
+</head>
+<body>
+
+<h1>jQuery modal</h1>
+
+<p><a href="#modal-1" rel="modal:open">Open first modal</a></p>
+
+<p><a href="modal-1bis.html" rel="modal:open">Open first modal (ajax)</a></p>
+
+<div id="modal-1">
+  <h2>First modal</h2>
+  <a class="modal-btn" href="#modal-2" rel="">Open second modal</a>
+  <p id="choice"></p>
+</div>
+
+<div id="modal-2">
+  <h2>Second modal : choose a character</h2>
+  <input id="makoto" name="name" type="radio" value="Makoto">
+  <label for="makoto">Makoto</label>
+  <input id="elena" name="name" type="radio" value="Elena">
+  <label for="elena">Elena</label>
+</div>
+
+</body>
+</html>
