@@ -9,7 +9,7 @@
   <title>jQuery Modal</title>
 
   <style>
-  #modal-1,#modal-2{
+  .hide {
     display:none;
   }
   </style>
@@ -19,7 +19,7 @@
       $(document).on('click','.modal-btn',function(event){
         event.preventDefault();
         $(this).modal({
-          unique: false
+          closeExisting: false
         });
       });
       $('#modal-2').on($.modal.OPEN,function(){
@@ -43,18 +43,20 @@
 
 <p><a href="modal-ajax.html" rel="modal:open">Open first modal (ajax)</a></p>
 
-<div id="modal-1">
-  <h2>First modal</h2>
-  <a class="modal-btn" href="#modal-2" rel="">Open second modal</a>
-  <p id="choice"></p>
-</div>
+<div class="hide">
+  <div id="modal-1">
+    <h2>First modal</h2>
+    <a class="modal-btn" href="#modal-2" rel="">Open second modal</a>
+    <p id="choice"></p>
+  </div>
 
-<div id="modal-2">
-  <h2>Second modal : choose a character</h2>
-  <input id="makoto" name="name" type="radio" value="Makoto">
-  <label for="makoto">Makoto</label>
-  <input id="elena" name="name" type="radio" value="Elena">
-  <label for="elena">Elena</label>
+  <div id="modal-2">
+    <h2>Second modal : choose a character</h2>
+    <input id="makoto" name="name" type="radio" value="Makoto">
+    <label for="makoto">Makoto</label>
+    <input id="elena" name="name" type="radio" value="Elena">
+    <label for="elena">Elena</label>
+  </div>
 </div>
 
 </body>
